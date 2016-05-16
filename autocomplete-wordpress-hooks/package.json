@@ -1,0 +1,52 @@
+{
+  "name": "autocomplete-wordpress-hooks",
+  "main": "./lib/main",
+  "version": "0.2.0",
+  "description": "Autocomplete support for WordPress actions and filters.",
+  "keywords": [
+    "php",
+    "wordpress",
+    "autocomplete"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joehoyle/atom-autocomplete-wordpress-hooks.git"
+  },
+  "license": "MIT",
+  "engines": {
+    "atom": ">=1.0.0 <2.0.0"
+  },
+  "dependencies": {},
+  "providedServices": {
+    "autocomplete.provider": {
+      "versions": {
+        "2.0.0": "getProvider"
+      }
+    }
+  },
+  "readme": "# Autocomplete WordPress Hooks\n\nAutocomplete support for WordPress actions and filters in the Atom editor.\n\n![autocomplete](https://cloud.githubusercontent.com/assets/161683/10559544/0a2daa42-74c1-11e5-9bbc-63c2275e90f6.gif)\n",
+  "readmeFilename": "README.md",
+  "bugs": {
+    "url": "https://github.com/joehoyle/atom-autocomplete-wordpress-hooks/issues"
+  },
+  "homepage": "https://github.com/joehoyle/atom-autocomplete-wordpress-hooks#readme",
+  "_id": "autocomplete-wordpress-hooks@0.2.0",
+  "_shasum": "9f6e983a6dc1e34f37bc52270ffe4cad817d1dd5",
+  "_resolved": "file:../d-116318-5074-11kt56x/package.tgz",
+  "_from": "../d-116318-5074-11kt56x/package.tgz",
+  "_atomModuleCache": {
+    "version": 1,
+    "dependencies": [],
+    "extensions": {
+      ".json": [
+        "hooks.json",
+        "package.json"
+      ],
+      ".js": [
+        "lib/main.js",
+        "lib/provider.js"
+      ]
+    },
+    "folders": []
+  }
+}
