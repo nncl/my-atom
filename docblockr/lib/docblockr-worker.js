@@ -68,7 +68,7 @@ module.exports =
           // extend line
           'extend_line': /^\s*(\/\/[\/!]?|#)/,
           // Extend docblock by adding an asterix at start
-          'extend': /^\s*\*[^\/]*$/,
+          'extend': /^\s*\*(?:.?|.*(?:[^*][^\/]|[^*]\/|\*[^\/]))\s*$/,
         };
 
         // Parse Command
@@ -579,7 +579,7 @@ module.exports =
       var text = editor.getTextInBufferRange([start_point, end_point]);
 
       //find the indentation level
-      var regex = /\n(\s*\*)/;
+      var regex = /(\s*\*)/;
       var matches = regex.exec(text);
       var indentation = matches[1].replace(/\t/g, this.repeat(' ', tab_size)).length;
       var line_prefix = matches[1];

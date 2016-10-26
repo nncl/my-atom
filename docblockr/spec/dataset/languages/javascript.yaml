@@ -149,6 +149,22 @@ parse_function:
         - should parse variable declaration with async anonymous arrow function
         - var foo = async () => {}
         - ['foo', null, 'Promise']
+    -
+        - should parse generator function
+        - function* foo (a, b, c) {}
+        - ['foo', 'a, b, c', 'Generator']
+    -
+        - should parse generator function with alternative syntax
+        - function *foo () {}
+        - ['foo', null, 'Generator']
+    -
+        - should parse variable declaration with anonymous generator function
+        - var foo = function*() {}
+        - ['foo', null, 'Generator']
+    -
+        - should parse exported staic generator function
+        - static function* bar () {}
+        - ['bar', null, 'Generator']
 
 get_arg_type:
     -
@@ -164,6 +180,10 @@ get_arg_type:
         - foo = new Foo()
         - Foo
     -
+        - should return "Foo" for "new Foo(12, bar(), x)"
+        - foo = new Foo(12, bar(), x)
+        - Foo
+    -
         - should return "Array" for "[]"
         - foo = []
         - Array
@@ -172,19 +192,27 @@ get_arg_type:
         - foo = [1, 2, 3]
         - Array
     -
+        - should return "Array" for "[[12, 45], "foo", /.*/]"
+        - foo = [[12, 45], "foo", /.*/]
+        - Array
+    -
         - should return "String" for 'foo'
         - foo = 'foo'
         - String
     -
-        - should return "String" for "new Foo()"
+        - should return "String" for "foo" (double quote literal)
+        - foo = "foo"
+        - String
+    -
+        - should return "String" for "new Foo()" (as string)
         - foo = 'new Foo()'
         - String
     -
-        - should return "String" for "123"
+        - should return "String" for "123" (as string)
         - foo = '123'
         - String
     -
-        - should return "String" for "[]"
+        - should return "String" for "[]" (as string)
         - foo = '[]'
         - String
     -
@@ -196,18 +224,17 @@ get_arg_type:
         - foo = 1.23
         - Number
     -
-        - should return no type
-        - foo
+        - should return "RegExp" for "/.*/"
+        - foo = /.*/
+        - RegExp
+    -
+        - should return "RegExp" for "RegExp('.*')"
+        - foo = RegExp('.*')
+        - RegExp
+    -
+        - should return no type for "n / x"
+        - foo = n / x;
         - null
-    -
-        - should return "Object" for "{}"
-        - "foo = {}"
-        - Object
-    -
-        - should return "Foo" for "new Foo()"
-        - foo = new Foo()
-        - Foo
-
 
 get_arg_name:
     -
@@ -259,3 +286,19 @@ get_function_return_type:
         - should detect type `boolean` because the name starts with `is`
         - [isFoo, null]
         - Boolean
+    -
+        - should detect type `boolean` because the name starts with `has`
+        - [hasFoo, null]
+        - Boolean
+    -
+        - should detect no return
+        - [setBar, null]
+        - null
+    -
+        - should detect no return
+        - [addBar, null]
+        - null
+    -
+        - should return false because no type could be detected
+        - [foo, null]
+        - false
